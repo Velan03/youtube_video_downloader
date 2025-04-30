@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="theme-toggle">
+        <label for="bgSelect">Theme:</label>
+        <select id="bgSelect" onchange="changeBackground()">
+            <option value="bg1.jpg">Gradient Purple</option>
+            <option value="bg2.jpg">Neon City</option>
+            <option value="bg3.jpg">Abstract Waves</option>
+            <option value="bg4.jpg">Dark Tech</option>
+            <option value="bg5.jpg">Minimal Light</option>
+            <option value="bg6.jpg">Cosmic Space</option>
+            <option value="">None</option>
+        </select>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fab fa-youtube pulse"></i>
+                    <h1>YouTube Downloader Pro</h1>
+                </div>
+                <p class="tagline">Download videos in multiple qualities up to 4K resolution</p>
+            </div>
+            <div class="wave-container">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-link input-icon"></i>
+                <input type="text" id="video-url" placeholder="Paste YouTube URL here...">
+                <button id="fetch-btn">
+                    <i class="fas fa-search"></i>
+                    <span>Fetch Video</span>
+                </button>
+            </div>
+            <div class="search-tips">
+                <i class="fas fa-lightbulb"></i>
+                <span>Tip: Works with regular videos, shorts, and playlists</span>
+            </div>
+        </div>
+
+        <div id="error-message" class="hidden alert alert-error">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="error-text"></span>
+            <button class="close-alert"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div id="loading-indicator" class="hidden">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <div class="spinner-inner"></div>
+            </div>
+            <p>Processing your request...</p>
+        </div>
+
+        <div id="video-info" class="hidden">
+            <div class="video-preview">
+                <div class="thumbnail-container">
+                    <img id="thumbnail" src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Video thumbnail">
+                    <div class="duration-badge" id="video-duration-badge"><i class="fas fa-clock"></i> <span></span></div>
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-details">
+                    <h2 id="video-title"></h2>
+                    <div class="meta-info">
+                        <p id="video-duration"><i class="fas fa-clock"></i> <span></span></p>
+                        <p id="video-uploader"><i class="fas fa-user"></i> <span></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quality-section">
+                <h3><i class="fas fa-cog"></i> Select Quality</h3>
+                <div id="quality-options" class="quality-grid"></div>
+                <p id="selected-size-display" class="quality-note"></p>
+                <p class="quality-note"><i class="fas fa-info-circle"></i> Higher qualities might be video-only and require merging (handled automatically)</p>
+            </div>
+
+            <div class="download-section">
+                <button id="download-btn" disabled>
+                    <div class="progress-bar"></div>
+                    <span class="btn-text"><i class="fas fa-download"></i> Download</span>
+                </button>
+                <p id="status-message"></p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><i class="fas fa-shield-alt"></i> For personal use only. Please respect copyright laws and YouTube's Terms of Service.</p>
+                    <p class="copyright">© 2025 YouTube Downloader Pro</p>
+                </div>
+                <div class="footer-features">
+                    <div class="feature"><i class="fas fa-tachometer-alt"></i> Fast Downloads</div>
+                    <div class="feature"><i class="fas fa-film"></i> Multiple Formats</div>
+                    <div class="feature"><i class="fas fa-lock"></i> Secure</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
